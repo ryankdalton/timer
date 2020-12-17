@@ -3,12 +3,19 @@ import datetime
 class Timer():
     """Create a timer object to track how long a process takes to complete"""
     
-    def __init__(self, name='default'):
+    def __init__(self, name='default', start=True):
         """Begin a new timer and provide a unique name, if desired"""
-        self.begin = datetime.datetime.now()
+        if start==True:
+            self.start()
+        else:
+            self.begin = None
         self.elapsed = None
         self.end = None
         self.name = name
+
+    def start(self):
+        """Start the timer"""
+        self.begin = datetime.datetime.now()
 
     def elapsed_timer(self):
         """Calculate an intermediate elapsed time from the begining of the timer"""
@@ -49,6 +56,7 @@ class Log():
             self.log.append({key:value})
         else:
             self.log.insert(index, {key:value})
+
 
     def pprint(self):
         print('\nProcessing time(s) per process:')
